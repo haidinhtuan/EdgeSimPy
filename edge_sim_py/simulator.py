@@ -118,17 +118,20 @@ class Simulator(ComponentManager, Model):
         # Adding the new object to the list of instances of its class
         self.__class__._instances.append(self)
 
-    def initialize(self, input_file: str) -> None:
+    def initialize(self, input_file: str, reset_components: bool = True) -> None:
         """Sets up the initial values for state variables, which includes, e.g., loading components from a dataset file.
 
         Args:
             input_file (str): Dataset file (URL for external JSON file, path for local JSON file, Python dictionary).
+            reset_components (bool): Whether to reset component instances before loading. Defaults to True.
+                Set to False if component state has been pre-initialized externally.
         """
         # Resetting the list of instances of EdgeSimPy's component classes
-        for component_class in ComponentManager.__subclasses__():
-            if component_class.__name__ != "Simulator":
-                component_class._object_count = 0
-                component_class._instances = []
+        if reset_components:
+            for component_class in ComponentManager.__subclasses__():
+                if component_class.__name__ != "Simulator":
+                    component_class._object_count = 0
+                    component_class._instances = []
 
         # Declaring an empty variable that will receive the dataset metadata (if user passes valid information)
         data = None
