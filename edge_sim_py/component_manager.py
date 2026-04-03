@@ -64,6 +64,10 @@ class ComponentManager:
     def _from_dict(cls, dictionary: dict) -> object:
         """Method that creates an object based on a dictionary specification.
 
+        Recognized attributes (those already defined in __init__) are set
+        directly.  Additional attributes from the dictionary are also set,
+        allowing dataset files to carry custom metadata (e.g., ``is_cloud``).
+
         Args:
             dictionary (dict): Object specification.
 
