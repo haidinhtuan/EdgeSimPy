@@ -38,12 +38,12 @@ class NetworkLink(dict, ComponentManager, Agent):
         # List of network nodes that are connected by the link
         self["nodes"] = []
 
-        # Link delay
-        self["delay"] = 0
+        # Link delay (milliseconds, supports fractional values)
+        self["delay"] = 0.0
 
-        # Link bandwidth capacity and bandwidth demand
-        self["bandwidth"] = 0
-        self["bandwidth_demand"] = 0
+        # Link bandwidth capacity (Mbps) and bandwidth demand
+        self["bandwidth"] = 0.0
+        self["bandwidth_demand"] = 0.0
 
         # List of applications using the link for routing data to their users
         self["applications"] = []
