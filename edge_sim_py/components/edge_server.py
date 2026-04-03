@@ -79,6 +79,9 @@ class EdgeServer(ComponentManager, Agent):
         # Edge server's availability status
         self.available = True
 
+        # Whether this is a cloud server (high capacity, high latency)
+        self.is_cloud = False
+
         # Number of active migrations involving the edge server
         self.ongoing_migrations = 0
 
