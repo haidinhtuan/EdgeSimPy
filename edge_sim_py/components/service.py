@@ -56,9 +56,9 @@ class Service(ComponentManager, Agent):
         # Service image's digest
         self.image_digest = image_digest
 
-        # Service demand
-        self.cpu_demand = cpu_demand
-        self.memory_demand = memory_demand
+        # Service demand (supports float values for normalized trace data)
+        self.cpu_demand = float(cpu_demand)
+        self.memory_demand = float(memory_demand)
 
         # Service state
         self.state = state
