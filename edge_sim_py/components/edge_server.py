@@ -242,6 +242,21 @@ class EdgeServer(ComponentManager, Agent):
         power_consumption = self.power_model.get_power_consumption(device=self) if self.power_model is not None else 0
         return power_consumption
 
+    @property
+    def free_cpu(self) -> float:
+        """Returns the available CPU capacity."""
+        return self.cpu - self.cpu_demand
+
+    @property
+    def free_memory(self) -> float:
+        """Returns the available memory capacity."""
+        return self.memory - self.memory_demand
+
+    @property
+    def free_disk(self) -> float:
+        """Returns the available disk capacity."""
+        return self.disk - self.disk_demand
+
     def has_capacity_to_host(self, service: object) -> bool:
         """Checks if the edge server has enough free resources to host a given service.
 
