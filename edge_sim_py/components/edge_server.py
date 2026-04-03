@@ -214,6 +214,21 @@ class EdgeServer(ComponentManager, Agent):
             # Adding the created flow to the edge server's download queue
             self.download_queue.append(flow)
 
+    @property
+    def cpu_utilization(self) -> float:
+        """Returns the CPU utilization as a fraction (0.0 to 1.0+)."""
+        return self.cpu_demand / self.cpu if self.cpu > 0 else 0.0
+
+    @property
+    def memory_utilization(self) -> float:
+        """Returns the memory utilization as a fraction (0.0 to 1.0+)."""
+        return self.memory_demand / self.memory if self.memory > 0 else 0.0
+
+    @property
+    def disk_utilization(self) -> float:
+        """Returns the disk utilization as a fraction (0.0 to 1.0+)."""
+        return self.disk_demand / self.disk if self.disk > 0 else 0.0
+
     def get_power_consumption(self) -> float:
         """Gets the edge server's power consumption.
 
